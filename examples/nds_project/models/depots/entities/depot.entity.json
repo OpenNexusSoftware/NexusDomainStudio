@@ -1,0 +1,35 @@
+{
+    "id": "depot",
+    "name": "Depot",
+    "description": "A storage location for goods or materials.",
+    "properties": [
+        {
+            "name": "id",
+            "type": "guid",
+            "description": "Internal unique identifier for the depot."
+        },
+        {
+            "name": "extrernalId",
+            "type": "string",
+            "description": "The external id of the depot."
+        },
+        {
+            "name": "externalProvider",
+            "type": "external_provider",
+            "description": "The external provider of the depot."
+        },
+        {
+            "name": "location",
+            "type": "depot_location",
+            "description": "Physical address or coordinates of the depot."
+        },
+        {
+            "name": "status",
+            "type": "depot_status",
+            "description": "Current operational status of the depot."
+        }
+    ],
+    "operations": [
+        "create_depot"
+    ]
+}

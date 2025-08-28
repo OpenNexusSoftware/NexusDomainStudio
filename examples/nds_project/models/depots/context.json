@@ -1,0 +1,5 @@
+{
+    "name": "Depots",
+    "description": "Domain for managing depots within the logistics system.",
+    "version": "1.0.0"
+}

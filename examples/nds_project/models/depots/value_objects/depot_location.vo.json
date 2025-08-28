@@ -1,0 +1,37 @@
+{
+    "id": "depot_location",
+    "name": "DepotLocation",
+    "description": "Represents the physical location of a depot.",
+    "properties": [
+        {
+            "name": "street",
+            "type": "string",
+            "description": "Street address of the depot."
+        },
+        {
+            "name": "number",
+            "type": "string",
+            "description": "Street number of the depot."
+        },
+        {
+            "name": "complement",
+            "type": "string",
+            "description": "Additional address information, such as apartment or suite number."
+        },
+        {
+            "name": "city",
+            "type": "string",
+            "description": "City where the depot is located."
+        },
+        {
+            "name": "postalCode",
+            "type": "string",
+            "description": "Postal or ZIP code of the depot."
+        },
+        {
+            "name": "country",
+            "type": "string",
+            "description": "Country where the depot is located."
+        }
+    ]
+}
