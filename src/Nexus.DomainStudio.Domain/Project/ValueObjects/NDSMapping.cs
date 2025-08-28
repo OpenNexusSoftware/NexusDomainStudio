@@ -5,15 +5,26 @@ namespace Nexus.DomainStudio.Domain.Project.ValueObjects;
 /// <summary>
 /// Represents a mapping of a property to a value within a Nexus Domain Studio project.
 /// </summary>
-public class NDSMapping : ValueObject
+public sealed class NDSMapping : ValueObject
 {
-    public required string Property { get; set; }
-    public required string Value { get; set; }
+    /// <summary>
+    /// The property being mapped.
+    /// </summary>
+    public string Property { get; }
+
+    /// <summary>
+    /// The value associated with the property.
+    /// </summary>
+    public string Value { get; }
 
     /// <summary>
     /// Private constructor for ORM and serialization purposes.
     /// </summary>
-    private NDSMapping() { }
+    private NDSMapping(string property, string value) 
+    {
+        Property = property;
+        Value = value;
+    }
 
     /// <summary>
     /// Creates a new instance of <see cref="NDSMapping"/> with the specified property and value.
@@ -36,11 +47,7 @@ public class NDSMapping : ValueObject
         }
 
         // Create the NDSMapping instance
-        var mapping = new NDSMapping
-        {
-            Property = property,
-            Value = value
-        };
+        var mapping = new NDSMapping(property, value);
 
         // Return the mapping
         return mapping;

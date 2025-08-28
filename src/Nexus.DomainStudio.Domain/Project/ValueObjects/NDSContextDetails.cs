@@ -5,11 +5,22 @@ namespace Nexus.DomainStudio.Domain.Project.ValueObjects;
 /// <summary>
 /// Represents the details of a Nexus Domain Studio context.
 /// </summary>
-public class NDSContextDetails : ValueObject
+public sealed class NDSContextDetails : ValueObject
 {
-    public string Name { get; private set; }
-    public string Description { get; private set; }
-    public Version Version { get; private set; }
+    /// <summary>
+    /// The name of the context.
+    /// </summary>
+    public string Name { get; }
+
+    /// <summary>
+    /// The description of the context.
+    /// </summary>
+    public string Description { get;}
+
+    /// <summary>
+    /// The version of the context.
+    /// </summary>
+    public Version Version { get; }
 
     /// <summary>
     /// Private constructor to enforce the use of the factory method.

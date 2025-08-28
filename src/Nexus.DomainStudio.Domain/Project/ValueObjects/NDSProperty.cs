@@ -2,18 +2,47 @@ using Nexus.DomainStudio.Domain.Common;
 
 namespace Nexus.DomainStudio.Domain.Project.ValueObjects;
 
-public class NDSProperty : ValueObject
+/// <summary>
+/// Represents a property in Nexus Domain Studio.
+/// </summary>
+public sealed class NDSProperty : ValueObject
 {
-    public required string Name { get; init; }
-    public required string Type { get; init; }
-    public required bool IsRequired { get; init; }
-    public string? Description { get; init; }
-    public string? DefaultValue { get; init; }
+    /// <summary>
+    /// The name of the property.
+    /// </summary>
+    public string Name { get; }
+
+    /// <summary>
+    /// The type of the property.
+    /// </summary>
+    public string Type { get; }
+
+    /// <summary>
+    /// Indicates whether the property is required.
+    /// </summary>
+    public bool IsRequired { get; }
+
+    /// <summary>
+    /// The description of the property.
+    /// </summary>
+    public string? Description { get; }
+
+    /// <summary>
+    /// The default value of the property, if any.
+    /// </summary>
+    public string? DefaultValue { get; }
 
     /// <summary>
     /// Private constructor to enforce the use of the Create method.
     /// </summary>
-    private NDSProperty() { }
+    private NDSProperty(string name, string type, bool isRequired, string? description, string? defaultValue)
+    {
+        Name = name;
+        Type = type;
+        IsRequired = isRequired;
+        Description = description;
+        DefaultValue = defaultValue;
+    }
 
     /// <summary>
     /// Creates a new NDSProperty instance after validating the inputs.
@@ -39,21 +68,19 @@ public class NDSProperty : ValueObject
         }
 
         // Create the NDSProperty instance
-        var property = new NDSProperty
-        {
-            Name = name,
-            Type = type,
-            IsRequired = isRequired,
-            Description = description,
-            DefaultValue = defaultValue
-        };
+        var property = new NDSProperty(name, type, isRequired, description, defaultValue);
 
         // Return the property
         return property;
     }
 
+    /// <summary>
+    /// Gets the components that define the equality of this value object.
+    /// </summary>
+    /// <returns></returns>
     public override IEnumerable<object?> GetEqualityComponents()
     {
+        // Return the properties that define equality
         yield return Name;
         yield return Type;
         yield return Description;

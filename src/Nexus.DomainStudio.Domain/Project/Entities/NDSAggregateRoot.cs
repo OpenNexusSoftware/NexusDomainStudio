@@ -4,16 +4,26 @@ using Nexus.DomainStudio.Domain.Project.Interfaces;
 
 namespace Nexus.DomainStudio.Domain.Project.Entities;
 
-public class NDSAggregateRoot : Entity<string>, INDSContextObject
+/// <summary>
+/// Represents an aggregate root in Nexus Domain Studio.
+/// </summary>
+public sealed class NDSAggregateRoot : Entity<string>, INDSContextObject
 {
+    /// <summary>
+    /// The name of the aggregate root.
+    /// </summary>
     public string Name { get; private set; }
+
+    /// <summary>
+    /// The ID of the root entity associated with this aggregate root.
+    /// </summary>
     public string RootEntityId { get; private set; }
 
     /// <summary>
     /// Private constructor to prevent direct instantiation.
     /// </summary>
     /// <param name="name"></param>
-    private NDSAggregateRoot(string name, string rootEntityId)
+    private NDSAggregateRoot(string id, string name, string rootEntityId) : base(id)
     {
         Name = name;
         RootEntityId = rootEntityId;
@@ -25,7 +35,7 @@ public class NDSAggregateRoot : Entity<string>, INDSContextObject
     /// <param name="name"></param>
     /// <param name="entity"></param>
     /// <returns></returns>
-    public Result<NDSAggregateRoot> Create(string name, string rootId)
+    public static Result<NDSAggregateRoot> Create(string id, string name, string rootId)
     {
         // Validate the name of the aggregate root
         if (string.IsNullOrWhiteSpace(name))
@@ -40,7 +50,7 @@ public class NDSAggregateRoot : Entity<string>, INDSContextObject
         }
 
         // Create the NDSAggregateRoot instance
-        var aggregateRoot = new NDSAggregateRoot(name, rootId);
+        var aggregateRoot = new NDSAggregateRoot(id, name, rootId);
 
         // Return the created aggregate root
         return aggregateRoot;

@@ -7,6 +7,13 @@ namespace Nexus.DomainStudio.Domain.Project.Interfaces;
 /// </summary>
 public interface INDSContextObject
 {
+    /// <summary>
+    /// The unique identifier of the NDS object.
+    /// </summary>
     string Id { get; }
+
+    /// <summary>
+    /// The type of the NDS object.
+    /// </summary>
     NDSObjectType ObjectType { get; }
 }

@@ -5,15 +5,49 @@ namespace Nexus.DomainStudio.Domain.Project.ValueObjects;
 /// <summary>
 /// Represents an argument for an operation in Nexus Domain Studio.
 /// </summary>
-public class NDSArgument : ValueObject
+public sealed class NDSArgument : ValueObject
 {
-    public required string Name { get; set; }
-    public required string Type { get; set; }
-    public string? Description { get; set; }
-    public required bool IsRequired { get; set; }
-    public string? DefaultValue { get; set; }
+    /// <summary>
+    /// The name of the argument.
+    /// </summary>
+    public string Name { get; }
 
-    private NDSArgument() { }
+    /// <summary>
+    /// The type of the argument.
+    /// </summary>
+    public string Type { get; }
+
+    /// <summary>
+    /// The description of the argument.
+    /// </summary>
+    public string? Description { get; }
+
+    /// <summary>
+    /// Indicates whether the argument is required.
+    /// </summary>
+    public bool IsRequired { get; }
+
+    /// <summary>
+    /// The default value of the argument, if any.
+    /// </summary>
+    public string? DefaultValue { get; }
+
+    /// <summary>
+    /// Private constructor to enforce the use of the Create method.
+    /// </summary>
+    /// <param name="name"></param>
+    /// <param name="type"></param>
+    /// <param name="description"></param>
+    /// <param name="isRequired"></param>
+    /// <param name="defaultValue"></param>
+    private NDSArgument(string name, string type, string? description, bool isRequired, string? defaultValue) 
+    {
+        Name = name;
+        Type = type;
+        Description = description;
+        IsRequired = isRequired;
+        DefaultValue = defaultValue;
+    }
 
     /// <summary>
     /// Creates a new instance of <see cref="NDSArgument"/>.
@@ -26,22 +60,23 @@ public class NDSArgument : ValueObject
     /// <returns></returns>
     public static Result<NDSArgument> Create(string name, string type, bool isRequired, string? description = null, string? defaultValue = null)
     {
+        // Validate the name
         if (string.IsNullOrWhiteSpace(name))
-            return Result<NDSArgument>.Error("Argument name cannot be empty.");
-
-        if (string.IsNullOrWhiteSpace(type))
-            return Result<NDSArgument>.Error("Argument type cannot be empty.");
-
-        var argument = new NDSArgument
         {
-            Name = name,
-            Type = type,
-            IsRequired = isRequired,
-            Description = description,
-            DefaultValue = defaultValue
-        };
+            return Result<NDSArgument>.Error("Argument name cannot be empty.");
+        }
 
-        return Result<NDSArgument>.Success(argument);
+        // Validate the type
+        if (string.IsNullOrWhiteSpace(type))
+        {
+            return Result<NDSArgument>.Error("Argument type cannot be empty.");
+        }
+
+        // Create the NDSArgument instance
+        var argument = new NDSArgument(name, type, description, isRequired, defaultValue);
+
+        // Return the argument
+        return argument;
     }
 
     /// <summary>

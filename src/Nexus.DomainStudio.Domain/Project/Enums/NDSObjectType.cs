@@ -16,7 +16,7 @@ public enum NDSObjectType
     Entity,
 
     /// <summary>
-    /// Represents a value object in the domain model.
+    /// Represents an enum in the domain model.
     /// </summary>
     Enum,
 

@@ -7,21 +7,35 @@ namespace Nexus.DomainStudio.Domain.Project.Entities;
 /// <summary>
 /// Represents an enumeration in Nexus Domain Studio.
 /// </summary>
-public class NDSEnum : Entity<string>, INDSContextObject
+public sealed class NDSEnum : Entity<string>, INDSContextObject
 {
+    /// <summary>
+    /// The name of the enum.
+    /// </summary>
     public string Name { get; private set; }
+
+    /// <summary>
+    /// The description of the enum.
+    /// </summary>
     public string? Description { get; private set; }
-    public List<string> Values { get; private set; }
+
+    // Backing field for values
+    private readonly List<string> _values;
 
     /// <summary>
     /// Private constructor to prevent direct instantiation.
     /// </summary>
-    private NDSEnum(string name, string? description, List<string> values)
+    private NDSEnum(string id, string name, string? description, List<string> values) : base(id)
     {
         Name = name;
         Description = description;
-        Values = values;
+        _values = values;
     }
+
+    /// <summary>
+    /// The values of the enum.
+    /// </summary>
+    public IEnumerable<string> Values => _values.AsReadOnly();
 
     /// <summary>
     /// Creates a new NDSEnum instance with the specified name, optional description, and values.
@@ -30,7 +44,7 @@ public class NDSEnum : Entity<string>, INDSContextObject
     /// <param name="description"></param>
     /// <param name="values"></param>
     /// <returns></returns>
-    public static Result<NDSEnum> Create(string name, string? description, List<string> values)
+    public static Result<NDSEnum> Create(string id, string name, string? description, List<string> values)
     {
         // Validate inputs
         if (string.IsNullOrWhiteSpace(name))
@@ -44,7 +58,7 @@ public class NDSEnum : Entity<string>, INDSContextObject
         }
 
         // Create the NDSEnum instance
-        var enumInstance = new NDSEnum(name, description, values);
+        var enumInstance = new NDSEnum(id, name, description, values);
 
         // Return the created enum
         return enumInstance;

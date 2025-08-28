@@ -1,15 +1,37 @@
 using Nexus.DomainStudio.Domain.Common;
 
-public class Version : ValueObject
-{
-    public int Minor { get; private set; }
-    public int Major { get; private set; }
-    public int Patch { get; private set; }
+namespace Nexus.DomainStudio.Domain.Project.ValueObjects;
 
-    private Version(int minor, int major, int patch)
+/// <summary>
+/// Represents a version with major, minor, and patch components.
+/// </summary>
+public sealed class Version : ValueObject
+{
+    /// <summary>
+    /// The minor version component.
+    /// </summary>
+    public int Minor { get; }
+
+    /// <summary>
+    /// The major version component.
+    /// </summary>
+    public int Major { get; }
+
+    /// <summary>
+    /// The patch version component.
+    /// </summary>
+    public int Patch { get; }
+
+    /// <summary>
+    /// Private constructor to enforce the use of the Create method.
+    /// </summary>
+    /// <param name="major"></param>
+    /// <param name="minor"></param>
+    /// <param name="patch"></param>
+    private Version(int major, int minor, int patch)
     {
-        Minor = minor;
         Major = major;
+        Minor = minor;
         Patch = patch;
     }
 
@@ -67,6 +89,7 @@ public class Version : ValueObject
     /// <returns></returns>
     public override IEnumerable<object?> GetEqualityComponents()
     {
+        // Return the major, minor, and patch components for equality comparison
         yield return Major;
         yield return Minor;
         yield return Patch;

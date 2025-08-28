@@ -8,12 +8,21 @@ namespace Nexus.DomainStudio.Domain.Project.Entities;
 /// <summary>
 /// Represents an entity in Nexus Domain Studio.
 /// </summary>
-public class NDSEntity : Entity<string>, INDSContextObject
+public sealed class NDSEntity : Entity<string>, INDSContextObject
 {
+    /// <summary>
+    /// The name of the entity.
+    /// </summary>
     public string Name { get; private set; }
+
+    /// <summary>
+    /// The description of the entity.
+    /// </summary>
     public string? Description { get; private set; }
-    public List<NDSProperty> Properties { get; private set; } = [];
-    public List<string> OperationIds { get; private set; } = [];
+
+    // Backing fields
+    private readonly List<NDSProperty> _properties;
+    private readonly List<string> _operationIds;
 
     /// <summary>
     /// Private constructor to prevent direct instantiation.
@@ -22,13 +31,23 @@ public class NDSEntity : Entity<string>, INDSContextObject
     /// <param name="description"></param>
     /// <param name="properties"></param>
     /// <param name="operationIds"></param>
-    private NDSEntity(string name, string? description, List<NDSProperty> properties, List<string> operationIds)
+    private NDSEntity(string id, string name, string? description, List<NDSProperty> properties, List<string> operationIds) : base(id)
     {
         Name = name;
         Description = description;
-        Properties = properties;
-        OperationIds = operationIds;
+        _properties = properties;
+        _operationIds = operationIds;
     }
+
+    /// <summary>
+    /// The properties of the entity.
+    /// </summary>
+    public IEnumerable<NDSProperty> Properties => _properties.AsReadOnly();
+
+    /// <summary>
+    /// The operation IDs associated with the entity.
+    /// </summary>
+    public IEnumerable<string> OperationIds => _operationIds.AsReadOnly();
 
     /// <summary>
     /// Creates a new NDSEntity instance with the specified name, optional description, properties, and operation IDs.
@@ -38,7 +57,7 @@ public class NDSEntity : Entity<string>, INDSContextObject
     /// <param name="properties"></param>
     /// <param name="operationIds"></param>
     /// <returns></returns>
-    public static Result<NDSEntity> Create(string name, string description, List<NDSProperty> properties, List<string> operationIds)
+    public static Result<NDSEntity> Create(string id, string name, string description, List<NDSProperty> properties, List<string> operationIds)
     {
         // Validate inputs
         if (string.IsNullOrWhiteSpace(name))
@@ -47,7 +66,7 @@ public class NDSEntity : Entity<string>, INDSContextObject
         }
 
         // Create the NDSEntity instance
-        var entity = new NDSEntity(name, description, properties, operationIds);
+        var entity = new NDSEntity(id, name, description, properties, operationIds);
 
         // Return the created entity
         return entity;

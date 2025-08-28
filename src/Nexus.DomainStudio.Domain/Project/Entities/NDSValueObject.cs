@@ -8,11 +8,19 @@ namespace Nexus.DomainStudio.Domain.Project.Entities;
 /// <summary>
 /// Represents a value object in Nexus Domain Studio.
 /// </summary>
-public class NDSValueObject : Entity<string>, INDSContextObject
+public sealed class NDSValueObject : Entity<string>, INDSContextObject
 {
+    /// <summary>
+    /// The properties of the value object.
+    /// </summary>
     public string Name { get; private set; }
+
+    /// <summary>
+    /// The properties of the value object.
+    /// </summary>
     public string Description { get; private set; }
-    public List<NDSProperty> Properties { get; set; }
+
+    private List<NDSProperty> _properties;
 
     /// <summary>
     /// Private constructor to prevent direct instantiation.
@@ -20,12 +28,17 @@ public class NDSValueObject : Entity<string>, INDSContextObject
     /// <param name="name"></param>
     /// <param name="description"></param>
     /// <param name="properties"></param>
-    private NDSValueObject(string name, string description, List<NDSProperty> properties)
+    private NDSValueObject(string id, string name, string description, List<NDSProperty> properties) : base(id)
     {
         Name = name;
         Description = description;
-        Properties = properties;
+        _properties = properties;
     }
+
+    /// <summary>
+    /// The properties of the value object.
+    /// </summary>
+    public IEnumerable<NDSProperty> Properties => _properties.AsReadOnly();
 
     /// <summary>
     /// Creates a new NDSValueObject instance with the specified name, description, and properties.
@@ -34,7 +47,7 @@ public class NDSValueObject : Entity<string>, INDSContextObject
     /// <param name="description"></param>
     /// <param name="properties"></param>
     /// <returns></returns>
-    public static Result<NDSValueObject> Create(string name, string description, List<NDSProperty> properties)
+    public static Result<NDSValueObject> Create(string id, string name, string description, List<NDSProperty> properties)
     {
         // Validate inputs
         if (string.IsNullOrWhiteSpace(name))
@@ -49,7 +62,7 @@ public class NDSValueObject : Entity<string>, INDSContextObject
         }
 
         // Create the NDSValueObject instance
-        var valueObject = new NDSValueObject(name, description, properties);
+        var valueObject = new NDSValueObject(id, name, description, properties);
 
         // Return the created value object
         return valueObject;
