@@ -11,7 +11,7 @@ internal static class Program
     public static void Main(string[] args)
     {
         // Build and configure the app
-        var appBuilder = AppBuilder.Configure<NexusDomainStudioApp>();
+        var appBuilder = AppBuilder.Configure<App>();
         appBuilder.UsePlatformDetect();
         appBuilder.LogToTrace();
 
