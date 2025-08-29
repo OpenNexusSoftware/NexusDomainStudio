@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nexus.DomainStudio.Domain",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nexus.DomainStudio.Infrastructure", "src\Nexus.DomainStudio.Infrastructure\Nexus.DomainStudio.Infrastructure.csproj", "{39C0EE3D-0987-4ABE-8F71-B41AC43239AB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nexus.DomainStudio.Presentation", "src\Nexus.DomainStudio.Presentation\Nexus.DomainStudio.Presentation.csproj", "{135F499D-6969-4585-A8AC-020807723398}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -87,6 +89,18 @@ Global
 		{39C0EE3D-0987-4ABE-8F71-B41AC43239AB}.Release|x64.Build.0 = Release|Any CPU
 		{39C0EE3D-0987-4ABE-8F71-B41AC43239AB}.Release|x86.ActiveCfg = Release|Any CPU
 		{39C0EE3D-0987-4ABE-8F71-B41AC43239AB}.Release|x86.Build.0 = Release|Any CPU
+		{135F499D-6969-4585-A8AC-020807723398}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{135F499D-6969-4585-A8AC-020807723398}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{135F499D-6969-4585-A8AC-020807723398}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{135F499D-6969-4585-A8AC-020807723398}.Debug|x64.Build.0 = Debug|Any CPU
+		{135F499D-6969-4585-A8AC-020807723398}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{135F499D-6969-4585-A8AC-020807723398}.Debug|x86.Build.0 = Debug|Any CPU
+		{135F499D-6969-4585-A8AC-020807723398}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{135F499D-6969-4585-A8AC-020807723398}.Release|Any CPU.Build.0 = Release|Any CPU
+		{135F499D-6969-4585-A8AC-020807723398}.Release|x64.ActiveCfg = Release|Any CPU
+		{135F499D-6969-4585-A8AC-020807723398}.Release|x64.Build.0 = Release|Any CPU
+		{135F499D-6969-4585-A8AC-020807723398}.Release|x86.ActiveCfg = Release|Any CPU
+		{135F499D-6969-4585-A8AC-020807723398}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -97,5 +111,6 @@ Global
 		{6041C00C-4C8C-4DB1-93A0-776DD7DD35EF} = {827E0CD3-B72D-47B6-A68D-7590B98EB39B}
 		{C97EDA4A-2A25-40F5-A62E-A229730A0B56} = {827E0CD3-B72D-47B6-A68D-7590B98EB39B}
 		{39C0EE3D-0987-4ABE-8F71-B41AC43239AB} = {827E0CD3-B72D-47B6-A68D-7590B98EB39B}
+		{135F499D-6969-4585-A8AC-020807723398} = {827E0CD3-B72D-47B6-A68D-7590B98EB39B}
 	EndGlobalSection
 EndGlobal

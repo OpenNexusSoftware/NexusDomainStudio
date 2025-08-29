@@ -1,10 +1,16 @@
 <!-- App.axaml -->
 <Application xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:loc="clr-namespace:Nexus.DomainStudio.Avalonia.ViewLocation"
     x:Class="Nexus.DomainStudio.Avalonia.App">
 
     <Application.Styles>
         <FluentTheme/>
     </Application.Styles>
+
+    <!-- Add the view locator data template to the application -->
+    <Application.DataTemplates>
+        <loc:DIViewLocator/>
+    </Application.DataTemplates>
 
 </Application>

@@ -2,18 +2,16 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:vm="clr-namespace:Nexus.DomainStudio.Avalonia.Models"
     x:Class="Nexus.DomainStudio.Avalonia.Views.MainWindow"
-    Width="400" Height="220"
+    Width="1200" Height="800"
     Title="Nexus Domain Studio">
 
-    <Window.DataContext>
-        <vm:MainWindowViewModel />
-    </Window.DataContext>
-
-    <StackPanel Margin="16" Spacing="8"
-        HorizontalAlignment="Center"
-        VerticalAlignment="Center">
-        <TextBlock Text="Hello, NexusDomainStudio!" FontSize="24" />
-        <Button Command="{Binding IncrementCommand}" Content="Click me" Width="120" Margin="0,8,0,0" />
-        <TextBlock Text="{Binding Count}" />
-    </StackPanel>
+    <DockPanel>
+        <!-- ViewLocator will see MenuBar (a *ViewModel* with [ViewModelFor]) and instantiate MenuBarView via DI -->
+        <ContentControl DockPanel.Dock="Top" Content="{Binding MenuBar}"/>
+        <StackPanel Margin="16" Spacing="8" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <TextBlock Text="Hello, NexusDomainStudio!" FontSize="24" />
+            <Button Command="{Binding IncrementCommand}" Content="Click me" Width="1000" Margin="0,8,0,0" />
+            <TextBlock Text="{Binding Count}" />
+        </StackPanel>
+    </DockPanel>
 </Window>

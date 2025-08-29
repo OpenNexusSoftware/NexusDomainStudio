@@ -12,6 +12,11 @@
     <PackageReference Include="Avalonia.Desktop" Version="11.3.4" />
     <PackageReference Include="Avalonia.Themes.Fluent" Version="11.3.4" />
     <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Nexus.DomainStudio.Presentation\Nexus.DomainStudio.Presentation.csproj" />
   </ItemGroup>
 
 </Project>
