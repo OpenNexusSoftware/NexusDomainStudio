@@ -23,9 +23,14 @@
             "name": "status",
             "type": "depot_status",
             "description": "Current operational status of the depot."
+        },
+        {
+            "name": "managed_by",
+            "type": "guid[]",
+            "description": "Array of UserAccount IDs who manage this depot." 
         }
     ],
     "operations": [
-        "create_depot"
+        "create_depot", "change_depot_external_ref", "change_depot_location", "change_depot_status", "add_managing_user", "remove_managing_user"
     ]
 }

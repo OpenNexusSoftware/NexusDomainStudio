@@ -1,0 +1,25 @@
+{
+    "id": "user_full_name",
+    "name": "UserFullName",
+    "description": "Value object representing a user's name.",
+    "properties": [
+        {
+            "name": "firstName",
+            "type": "string",
+            "description": "First name of the user",
+            "required": true
+        },
+        {
+            "name": "middleName",
+            "type": "string",
+            "description": "Middle name of the user",
+            "required": false
+        },
+        {
+            "name": "lastName",
+            "type": "string",
+            "description": "Last name of the user",
+            "required": true
+        }
+    ]
+}

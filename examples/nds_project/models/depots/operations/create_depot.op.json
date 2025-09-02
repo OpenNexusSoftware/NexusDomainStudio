@@ -1,6 +1,7 @@
 {
     "id": "create_depot",
     "name": "CreateDepot",
+    "factory": true,
     "args": [
         { "name": "externalRef", "type": "external_ref", "required": true, "description": "The external reference of the depot provider" },
         { "name": "location", "type": "depot_location", "required": true, "description": "The physical location of the depot" }

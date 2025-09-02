@@ -1,0 +1,75 @@
+{
+    "id": "user_account",
+    "name": "UserAccount",
+    "description": "Represents a user in the system.",
+    "properties": [
+        {
+            "name": "id",
+            "type": "guid",
+            "description": "Unique identifier for the user",
+            "unique": true,
+            "required": true
+        },
+        {
+            "name": "profile",
+            "type": "UserProfile",
+            "description": "Profile information of the user",
+            "required": false
+        },
+        {
+            "name": "role",
+            "type": "UserRole",
+            "description": "Role of the user in the system",
+            "required": true
+        },
+        {
+            "name": "email",
+            "type": "string",
+            "description": "Email address of the user",
+            "required": true
+        },
+        {
+            "name": "status",
+            "type": "UserStatus",
+            "description": "Current status of the user account",
+            "required": true,
+            "default": "active"
+        },
+        {
+            "name": "authId",
+            "type": "string",
+            "description": "Authentication identifier for the user",
+            "required": false
+        },
+        {
+            "name": "createdAt",
+            "type": "dateTime",
+            "description": "Timestamp when the user account was created",
+            "required": true
+        },
+        {
+            "name": "updatedAt",
+            "type": "dateTime",
+            "description": "Timestamp when the user account was last updated",
+            "required": false
+        }
+    ],
+    "transitions": [
+        { "property": "status", "from": ["suspended"], "to": "active", "conditions": [] },
+        { "property": "status", "from": ["active"], "to": "inactive", "conditions": [] },
+        { "property": "status", "from": ["inactive"], "to": "active", "conditions": [] },
+        { "property": "status", "from": ["active", "inactive"], "to": "suspended", "conditions": [] }
+    ],
+    "operations": [
+        "create_user", "change_status", "change_role", "update_profile"
+    ],
+    "conditions": [
+        {
+            "name": "IsSuspended",
+            "description": "Checks if the user account is suspended.",
+            "checks": [
+                { "property": "status", "operator": "equals", "value": "suspended" }
+            ]
+        }
+    ]
+}
