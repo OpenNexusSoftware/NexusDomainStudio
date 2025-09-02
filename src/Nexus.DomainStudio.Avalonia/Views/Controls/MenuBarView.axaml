@@ -4,12 +4,31 @@
              xmlns:menu="clr-namespace:Nexus.DomainStudio.Avalonia.Menu"
              x:Class="Nexus.DomainStudio.Avalonia.Views.Controls.MenuBarView">
 
-    <Menu ItemsSource="{Binding Items}">
+    <Menu>
+        <MenuItem Header="_File">
+            <MenuItem Header="Open" Command="{Binding OpenCommand}"/>
+            <MenuItem Header="Exit" Command="{Binding ExitCommand}"/>
+        </MenuItem>
+    </Menu>
+
+    <!-- <Menu ItemsSource="{Binding Items}">
         <Menu.ItemTemplate>
             <DataTemplate>
-                <MenuItem Header="{Binding Title}" Command="{Binding Command}" ItemsSource="{Binding Children}" />
+                <MenuItem Header="{Binding Title}" Command="{Binding Command}" ItemsSource="{Binding Children}">
+                    <MenuItem.ItemTemplate>
+                        <DataTemplate>
+                            <MenuItem Header="{Binding Title}" Command="{Binding Command}" ItemsSource="{Binding Children}">
+                                <MenuItem.ItemTemplate>
+                                    <DataTemplate>
+                                        <MenuItem Header="{Binding Title}" Command="{Binding Command}" ItemsSource="{Binding Children}"/>
+                                    </DataTemplate>
+                                </MenuItem.ItemTemplate>
+                            </MenuItem>
+                        </DataTemplate>
+                    </MenuItem.ItemTemplate>
+                </MenuItem>
             </DataTemplate>
         </Menu.ItemTemplate>
-    </Menu>
+    </Menu> -->
 
 </UserControl>

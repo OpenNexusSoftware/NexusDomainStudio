@@ -1,0 +1,11 @@
+{
+    "id": "depot_created",
+    "name": "DepotCreated",
+    "description": "Event triggered when a new depot is created.",
+    "properties": [
+        { "name": "depotId", "type": "guid", "description": "The unique identifier of the created depot." },
+        { "name": "externalRef", "type": "external_reference", "description": "The external reference of the created depot." },
+        { "name": "location", "type": "DepotLocation", "description": "The physical location of the created depot." },
+        { "name": "status", "type": "DepotStatus", "description": "The status of the created depot." }
+    ]
+}

@@ -1,0 +1,17 @@
+{
+    "id": "change_depot_location",
+    "name": "ChangeDepotLocation",
+    "args": [
+        { "name": "location", "type": "DepotLocation", "required": true, "description": "The new physical location of the depot" }
+    ],
+    "emits": [
+        {
+            "event": "depot_location_changed",
+            "description": "Emitted when a depot's location is changed.",
+            "maps": [
+                { "property": "depotId", "value": "$this.id" },
+                { "property": "location", "value": "$this.location" }
+            ]
+        }
+    ]
+}

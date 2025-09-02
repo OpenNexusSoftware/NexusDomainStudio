@@ -20,7 +20,7 @@ public sealed class NDSContextDetails : ValueObject
     /// <summary>
     /// The version of the context.
     /// </summary>
-    public Version Version { get; }
+    public NDSVersion Version { get; }
 
     /// <summary>
     /// Private constructor to enforce the use of the factory method.
@@ -28,7 +28,7 @@ public sealed class NDSContextDetails : ValueObject
     /// <param name="name"></param>
     /// <param name="description"></param>
     /// <param name="version"></param>
-    private NDSContextDetails(string name, string description, Version version) 
+    private NDSContextDetails(string name, string description, NDSVersion version) 
     {
         Name = name;
         Description = description;
@@ -42,7 +42,7 @@ public sealed class NDSContextDetails : ValueObject
     /// <param name="description"></param>
     /// <param name="version"></param>
     /// <returns></returns>
-    public static NDSContextDetails Create(string name, string description, Version version)
+    public static Result<NDSContextDetails> Create(string name, string description, NDSVersion version)
     {
         // Add any necessary validation here
         return new NDSContextDetails(name, description, version);

@@ -5,7 +5,7 @@ namespace Nexus.DomainStudio.Domain.Project.ValueObjects;
 /// <summary>
 /// Represents a version with major, minor, and patch components.
 /// </summary>
-public sealed class Version : ValueObject
+public sealed class NDSVersion : ValueObject
 {
     /// <summary>
     /// The minor version component.
@@ -28,7 +28,7 @@ public sealed class Version : ValueObject
     /// <param name="major"></param>
     /// <param name="minor"></param>
     /// <param name="patch"></param>
-    private Version(int major, int minor, int patch)
+    private NDSVersion(int major, int minor, int patch)
     {
         Major = major;
         Minor = minor;
@@ -40,7 +40,7 @@ public sealed class Version : ValueObject
     /// </summary>
     /// <param name="version"></param>
     /// <returns></returns>
-    public static Result<Version> Create(string version)
+    public static Result<NDSVersion> Create(string version)
     {
         // Split the version string by '.'
         var parts = version.Split('.');
@@ -48,7 +48,7 @@ public sealed class Version : ValueObject
         // Check if we have exactly 3 parts: Major, Minor, Patch
         if (parts.Length != 3)
         {
-            return Result<Version>.Error("Invalid version format. Expected format: Major.Minor.Patch");
+            return Result<NDSVersion>.Error("Invalid version format. Expected format: Major.Minor.Patch");
         }
 
         // Try to parse each part to an integer
@@ -59,11 +59,11 @@ public sealed class Version : ValueObject
         // Validate that all parts are non-negative integers
         if (major < 0 || minor < 0 || patch < 0)
         {
-            return Result<Version>.Error("Invalid version format. Expected format: Major.Minor.Patch");
+            return Result<NDSVersion>.Error("Invalid version format. Expected format: Major.Minor.Patch");
         }
 
         // Create and return the Version object
-        return new Version(major, minor, patch);
+        return new NDSVersion(major, minor, patch);
     }
 
     /// <summary>
@@ -73,14 +73,14 @@ public sealed class Version : ValueObject
     /// <param name="minor"></param>
     /// <param name="patch"></param>
     /// <returns></returns>
-    public static Result<Version> Create(int major, int minor, int patch)
+    public static Result<NDSVersion> Create(int major, int minor, int patch)
     {
         if (major < 0 || minor < 0 || patch < 0)
         {
-            return Result<Version>.Error("Version numbers must be non-negative.");
+            return Result<NDSVersion>.Error("Version numbers must be non-negative.");
         }
 
-        return new Version(major, minor, patch);
+        return new NDSVersion(major, minor, patch);
     }
 
     /// <summary>

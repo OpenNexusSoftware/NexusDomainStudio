@@ -20,12 +20,12 @@ public sealed class NDSProjectDetails : ValueObject
     /// <summary>
     /// The version of the project.
     /// </summary>
-    public Version Version { get; }
+    public NDSVersion Version { get; }
 
     /// <summary>
     /// The version of the underlying model the project is based on.
     /// </summary>
-    public Version ModelVersion { get; }
+    public NDSVersion ModelVersion { get; }
 
     /// <summary>
     /// Private constructor to enforce the use of the factory method.
@@ -34,7 +34,7 @@ public sealed class NDSProjectDetails : ValueObject
     /// <param name="description"></param>
     /// <param name="version"></param>
     /// <param name="modelVersion"></param>
-    private NDSProjectDetails(string name, string? description, Version version, Version modelVersion)
+    private NDSProjectDetails(string name, string? description, NDSVersion version, NDSVersion modelVersion)
     {
         Name = name;
         Description = description;
@@ -50,7 +50,7 @@ public sealed class NDSProjectDetails : ValueObject
     /// <param name="version"></param>
     /// <param name="modelVersion"></param>
     /// <returns></returns>
-    public static NDSProjectDetails Create(string name, string? description, Version version, Version modelVersion)
+    public static Result<NDSProjectDetails> Create(string name, string? description, NDSVersion version, NDSVersion modelVersion)
     {
         // Add any necessary validation here
         return new NDSProjectDetails(name, description, version, modelVersion);

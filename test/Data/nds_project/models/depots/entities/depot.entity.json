@@ -1,0 +1,36 @@
+{
+    "id": "depot",
+    "name": "Depot",
+    "description": "A storage location for goods or materials.",
+    "properties": [
+        {
+            "name": "id",
+            "type": "guid",
+            "description": "Internal unique identifier for the depot."
+        },
+        {
+            "name": "externalRef",
+            "type": "external_reference",
+            "description": "The external reference of the depot.",
+            "required": false
+        },
+        {
+            "name": "location",
+            "type": "depot_location",
+            "description": "Physical address or coordinates of the depot."
+        },
+        {
+            "name": "status",
+            "type": "depot_status",
+            "description": "Current operational status of the depot."
+        },
+        {
+            "name": "managed_by",
+            "type": "guid[]",
+            "description": "Array of UserAccount IDs who manage this depot." 
+        }
+    ],
+    "operations": [
+        "create_depot", "change_depot_external_ref", "change_depot_location", "change_depot_status", "add_managing_user", "remove_managing_user"
+    ]
+}

@@ -1,0 +1,14 @@
+{
+    "id": "logistics",
+    "name": "Logistics",
+    "description": "Domain containing the logistics of the Sanibell ISM.",
+    "version": "1.0.0",
+    "sources": {
+        "aggregates": ["aggregates/*.aggregate.json"],
+        "entities": ["entities/*.entity.json"],
+        "enums": ["enums/*.enum.json"],
+        "events": ["events/*.event.json"],
+        "operations": ["operations/*.op.json"],
+        "valueObjects": ["value_objects/*.vo.json"]
+    }
+}

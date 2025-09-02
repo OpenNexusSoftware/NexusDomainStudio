@@ -8,10 +8,10 @@
     <DockPanel>
         <!-- ViewLocator will see MenuBar (a *ViewModel* with [ViewModelFor]) and instantiate MenuBarView via DI -->
         <ContentControl DockPanel.Dock="Top" Content="{Binding MenuBar}"/>
-        <StackPanel Margin="16" Spacing="8" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <TextBlock Text="Hello, NexusDomainStudio!" FontSize="24" />
-            <Button Command="{Binding IncrementCommand}" Content="Click me" Width="1000" Margin="0,8,0,0" />
-            <TextBlock Text="{Binding Count}" />
-        </StackPanel>
+        <Grid ColumnDefinitions="300,1,*">
+            <ContentControl Grid.Column="0" Content="{Binding Explorer}"/>
+            <GridSplitter Grid.Column="1" Background="Black" ResizeDirection="Columns"/>
+            <Rectangle Grid.Column="2" Fill="Red"/>
+        </Grid>
     </DockPanel>
 </Window>

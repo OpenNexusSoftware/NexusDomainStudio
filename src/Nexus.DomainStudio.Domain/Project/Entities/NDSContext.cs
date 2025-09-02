@@ -99,4 +99,26 @@ public sealed class NDSContext : Entity<string>
         // Return success
         return Result.Success();
     }
+
+    /// <summary>
+    /// Adds multiple symbols to the context.
+    /// </summary>
+    /// <param name="symbols"></param>
+    /// <returns></returns>
+    public IEnumerable<Result> AddSymbols(IEnumerable<INDSContextObject> symbols)
+    {
+        // Create a new list to hold the results
+        var results = new List<Result>();
+
+        // Iterate over each symbol and add it to the context
+        foreach (var symbol in symbols)
+        {
+            // Add the symbol and store the result
+            var result = AddSymbol(symbol.Id, symbol);
+            results.Add(result);
+        }
+
+        // Return the list of results
+        return results;
+    }
 }

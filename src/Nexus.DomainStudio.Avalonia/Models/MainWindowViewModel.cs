@@ -12,15 +12,15 @@ public partial class MainWindowViewModel : ObservableObject
     /// </summary>
     public MenuBarViewModel MenuBar { get; }
 
+    public ExplorerViewModel Explorer { get; }
+
     /// <summary>
     /// Initializes a new instance of the <see cref="MainWindowViewModel"/> class.
     /// </summary>
     /// <param name="menuBar"></param>
-    public MainWindowViewModel(MenuBarViewModel menuBar) => MenuBar = menuBar;
-
-    [ObservableProperty]
-    private int count = 0;
-
-    [RelayCommand]
-    private void Increment() => Count++;
+    public MainWindowViewModel(MenuBarViewModel menuBar, ExplorerViewModel explorer)
+    {
+        MenuBar = menuBar;
+        Explorer = explorer;
+    }
 }

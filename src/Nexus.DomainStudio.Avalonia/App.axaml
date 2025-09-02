@@ -6,6 +6,17 @@
 
     <Application.Styles>
         <FluentTheme/>
+
+        <Style Selector="Menu">
+            <Setter Property="Background" Value="#2d2d30"/>
+            <Setter Property="Foreground" Value="White"/>
+        </Style>
+
+        <Style Selector="TreeView">
+            <Setter Property="Background" Value="#1e1e1e"/>
+            <Setter Property="Foreground" Value="White"/>
+        </Style>
+
     </Application.Styles>
 
     <!-- Add the view locator data template to the application -->

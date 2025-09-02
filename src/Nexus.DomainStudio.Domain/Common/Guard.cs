@@ -2,9 +2,9 @@
 
 namespace Nexus.DomainStudio.Domain.Common;
 
-
 public static class Guard
 {
+
     /// <summary>
     /// Checks if the provided value is null and throws an ArgumentNullException if it is.
     /// </summary>
@@ -12,7 +12,6 @@ public static class Guard
     /// <param name="value"></param>
     /// <param name="parameterName"></param>
     /// <exception cref="ArgumentNullException"></exception>
-
     public static void AgainstNull<T>(T? value, string? parameterName = null) where T : class
     {
 		if (value is null)
@@ -21,6 +20,7 @@ public static class Guard
             throw new ArgumentNullException(argName, $"{argName} cannot be null.");
 		}
     }
+
     /// <summary>
     ///  Checks if the provided value is null or Empty and throws an ArgumentException if it is.
     /// </summary>
@@ -34,6 +34,7 @@ public static class Guard
 			throw new ArgumentException($"{parameterName} cannot be null or empty.", parameterName);
 		}
     }
+
     /// <summary>
     /// checks if the provided value is out of range and throws an ArgumentOutOfRangeException if it is.    
     /// </summary>
@@ -49,6 +50,7 @@ public static class Guard
 			throw new ArgumentOutOfRangeException(parameterName, $"The value of {parameterName} must be between {min} and {max}.");
 		}
     }
+    
     /// <summary>
     /// checks if the provided value is invalid input and throws an ArgumentException if it is.
     /// </summary>
