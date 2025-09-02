@@ -2,20 +2,18 @@
     "id": "create_depot",
     "name": "CreateDepot",
     "args": [
-        { "name": "extrernalId", "type": "string", "required": true, "description": "The external id of the depot provider" },
-        { "name": "externalProvider", "type": "ExternalProvider", "required": true, "description": "The external provider of the depot" },
-        { "name": "location", "type": "DepotLocation", "required": true, "description": "The physical location of the depot" }
+        { "name": "externalRef", "type": "external_ref", "required": true, "description": "The external reference of the depot provider" },
+        { "name": "location", "type": "depot_location", "required": true, "description": "The physical location of the depot" }
     ],
     "emits": [
         {
             "event": "depot_created",
             "description": "Emitted when a new depot is created.",
             "maps": [
-                { "property": "depotId", "value": "id" },
-                { "property": "externalId", "value": "extrernalId" },
-                { "property": "externalProvider", "value": "externalProvider" },
-                { "property": "location", "value": "location" },
-                { "property": "status", "value": "status" }
+                { "property": "depotId", "value": "$this.id" },
+                { "property": "externalRef", "value": "$this.externalRef" },
+                { "property": "location", "value": "$this.location" },
+                { "property": "status", "value": "$this.status" }
             ]
         }
     ]

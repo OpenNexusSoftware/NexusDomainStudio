@@ -9,14 +9,10 @@
             "description": "Internal unique identifier for the depot."
         },
         {
-            "name": "extrernalId",
-            "type": "string",
-            "description": "The external id of the depot."
-        },
-        {
-            "name": "externalProvider",
-            "type": "external_provider",
-            "description": "The external provider of the depot."
+            "name": "externalRef",
+            "type": "external_reference",
+            "description": "The external reference of the depot.",
+            "required": false
         },
         {
             "name": "location",

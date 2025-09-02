@@ -1,0 +1,10 @@
+{
+    "id": "depot_status_changed",
+    "name": "DepotStatusChanged",
+    "description": "Event triggered when the status of a depot is changed.",
+    "properties": [
+        { "name": "depotId", "type": "guid", "description": "The unique identifier of the depot." },
+        { "name": "status", "type": "DepotStatus", "description": "The new status of the depot." },
+        { "name": "oldStatus", "type": "DepotStatus", "description": "The previous status of the depot." }
+    ]
+}
