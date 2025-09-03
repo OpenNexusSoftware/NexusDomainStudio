@@ -1,6 +1,0 @@
-{
-    "id": "external_provider",
-    "name": "ExternalProvider",
-    "description": "Enumeration of possible external providers for depots.",
-    "values": ["KING_SOFTWARE"]
-}

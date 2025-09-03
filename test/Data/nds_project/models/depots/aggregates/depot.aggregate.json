@@ -1,6 +1,0 @@
-{
-    "id": "depot_root",
-    "name": "DepotRoot",
-    "description": "Aggregate representing a depot in the logistics system.",
-    "root": "depot"
-}

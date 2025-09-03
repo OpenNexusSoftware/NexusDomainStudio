@@ -1,6 +1,0 @@
-{
-    "id": "user_root",
-    "name": "UserRoot",
-    "description": "Aggregate representing a user in the logistics system.",
-    "root": "user_account"
-}

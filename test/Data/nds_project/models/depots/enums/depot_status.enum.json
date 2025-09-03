@@ -1,6 +1,0 @@
-{
-    "id": "depot_status",
-    "name": "DepotStatus",
-    "description": "Enumeration of possible statuses for a depot.",
-    "values": ["ACTIVE", "INACTIVE"]
-}

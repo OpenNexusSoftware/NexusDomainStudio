@@ -1,9 +1,0 @@
-{
-    "id": "depot_location_changed",
-    "name": "DepotLocationChanged",
-    "description": "Event triggered when the location of a depot is changed.",
-    "properties": [
-        { "name": "depotId", "type": "guid", "description": "The unique identifier of the depot." },
-        { "name": "location", "type": "DepotLocation", "description": "The new location of the depot." }
-    ]
-}

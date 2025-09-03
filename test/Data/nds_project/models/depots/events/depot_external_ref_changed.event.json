@@ -1,9 +1,0 @@
-{
-    "id": "depot_external_ref_changed",
-    "name": "DepotExternalReferenceChanged",
-    "description": "Event triggered when the external reference is changed.",
-    "properties": [
-        { "name": "depotId", "type": "guid", "description": "The unique identifier of the created depot." },
-        { "name": "externalRef", "type": "external_reference", "description": "The new external reference of the depot." }
-    ]
-}
