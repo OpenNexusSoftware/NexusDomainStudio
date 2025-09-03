@@ -10,7 +10,7 @@ public class JsonPropertyDTO
     /// <summary>
     /// Name of the property.
     /// </summary>
-    [JsonPropertyName("id")]
+    [JsonPropertyName("name")]
     public string Name { get; set; } = string.Empty;
 
     /// <summary>

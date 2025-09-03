@@ -54,7 +54,7 @@ public class JsonPropertyDTOTests
 
         File.WriteAllText(path, /* language=json */ """
             {
-              "id": "Location"
+              "name": "Location"
             }
             """);
 
