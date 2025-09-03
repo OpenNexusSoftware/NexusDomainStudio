@@ -28,7 +28,7 @@ public class JsonValueObjectDTOTests
               "name": "DepotId",
               "description": "Value object for depot identifier",
               "properties": [
-                { "id": "Value", "type": "string", "description": "Underlying string value" }
+                { "name": "Value", "type": "string", "description": "Underlying string value" }
               ]
             }
             """);

@@ -91,24 +91,11 @@ public class JsonNDSProjectDeserializer : INDSProjectDeserializer
         // Check for deserialization errors
         if (!dto.IsSuccess) return Result<JsonNDSProjectDeserializedResult>.Error(dto.GetErrorMessage());
 
-        // Get the project version and return an error result if it is invalid
-        var projectVersion = NDSVersion.Create(dto.Value.Version);
-        if(!projectVersion.IsSuccess) return Result<JsonNDSProjectDeserializedResult>.Error(projectVersion.GetErrorMessage());
-
-        // Get the model version and return an error result if it is invalid
-        var modelVersion = NDSVersion.Create(dto.Value.ModelVersion);
-        if(!modelVersion.IsSuccess) return Result<JsonNDSProjectDeserializedResult>.Error(modelVersion.GetErrorMessage());
-
-        // Create the project details and return an error result if it is invalid
-        var projectDetails = NDSProjectDetails.Create(dto.Value.Name, dto.Value.Description, projectVersion.Value, modelVersion.Value);
-        if(!projectDetails.IsSuccess) return Result<JsonNDSProjectDeserializedResult>.Error(projectDetails.GetErrorMessage());
-
-        // Create the project
-        var projectResult = NDSProject.Create(Guid.NewGuid().ToString(), projectDetails.Value);
-        if(!projectResult.IsSuccess) return Result<JsonNDSProjectDeserializedResult>.Error(projectResult.GetErrorMessage());
+        var projectEntityResult = dto.Value.ToEntity();
+        if (!projectEntityResult.IsSuccess) return Result<JsonNDSProjectDeserializedResult>.Error(projectEntityResult.GetErrorMessage());
 
         // Get the created project instance and create the deserialized result
-        var deserializeResult = new JsonNDSProjectDeserializedResult(projectResult.Value);
+        var deserializeResult = new JsonNDSProjectDeserializedResult(projectEntityResult.Value);
 
         // Iterate over all the contexts in the dto and convert it to the domain entity
         foreach (var contextSource in dto.Value.Contexts)
@@ -125,6 +112,18 @@ public class JsonNDSProjectDeserializer : INDSProjectDeserializer
                 deserializeResult.DeserialiseErrors.Add(Result.Error($"Failed to deserialize context file {contextPath}: {ndsContextDto.GetErrorMessage()}"));
                 continue;
             }
+
+            var ndsContextResult = ndsContextDto.Value.ToEntity();
+            if (!ndsContextResult.IsSuccess)
+            {
+                // If conversion to entity failed, log a warning and skip this context
+                _logger.LogWarning("Failed to convert context DTO to entity for file {ContextFile}: {ErrorMessage}", contextPath, ndsContextResult.GetErrorMessage());
+                deserializeResult.DeserialiseErrors.Add(Result.Error($"Failed to convert context DTO to entity for file {contextPath}: {ndsContextResult.GetErrorMessage()}"));
+                continue;
+            }
+
+            // Get the context entity
+            var context = ndsContextResult.Value;
 
             // Get the directory of the context source file to resolve relative paths
             var contextDir = Path.GetDirectoryName(contextPath) ?? throw new InvalidOperationException("Context source directory could not be determined.");
@@ -159,11 +158,6 @@ public class JsonNDSProjectDeserializer : INDSProjectDeserializer
 
             // Partition the results into successful and failed conversions
             conversionObjects.PartitionInto(successfulConversions, deserializeResult.ConversionErrors, r => r.IsSuccess);
-
-            // Create the context object
-            var version = NDSVersion.Create(ndsContextDto.Value.Version);
-            var details = NDSContextDetails.Create(ndsContextDto.Value.Name, ndsContextDto.Value.Description, version.Value);
-            var context = NDSContext.Create(ndsContextDto.Value.Id, details.Value);
 
             // Collect all the results from adding symbols
             var addSymbolResults = context.AddSymbols(successfulConversions.Select(r => r.Value));

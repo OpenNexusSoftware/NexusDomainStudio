@@ -73,7 +73,7 @@ public sealed class NDSContext : Entity<string>
     /// </summary>
     /// <param name="details"></param>
     /// <returns></returns>
-    public static NDSContext Create(string id, NDSContextDetails details)
+    public static Result<NDSContext> Create(string id, NDSContextDetails details)
     {
         // Add any necessary validation here
         return new NDSContext(id, details);

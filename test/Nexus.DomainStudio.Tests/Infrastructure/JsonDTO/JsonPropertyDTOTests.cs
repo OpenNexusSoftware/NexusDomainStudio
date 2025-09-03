@@ -23,7 +23,7 @@ public class JsonPropertyDTOTests
 
         File.WriteAllText(path, /* language=json */ """
             {
-              "id": "DepotId",
+              "name": "DepotId",
               "type": "string",
               "description": "Unique depot identifier"
             }
